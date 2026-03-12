@@ -26,7 +26,11 @@ def manager_with_one_expense(context, amount):
         title="Gasto inicial", amount=amount, description="", expense_date=date.today()
     )
 
-
+@given(parsers.parse("un gestor con un gasto del {amount:d} euros llamado {title} con id {expense_id:d}"))
+def edit_expense(context, amount, title, expense_id):
+    context["service"].create_expense(
+        title="Gasto editado", amount=amount, description="", expense_date=date.today()
+    )
 @when(parsers.parse("añado un gasto de {amount:d} euros llamado {title}"))
 def add_expense(context, amount, title):
     context["service"].create_expense(
@@ -37,7 +41,9 @@ def add_expense(context, amount, title):
 @when(parsers.parse("elimino el gasto con id {expense_id:d}"))
 def remove_expense(context, expense_id):
     context["service"].remove_expense(expense_id)
-
+@when(parsers.parse("edito el gasto de {amount:d} euros para que ahora valga {amount:d} euros"))
+def edit_expense(context, amount):
+    context["service"].edit_expense()
 
 @then(parsers.parse("el total de dinero gastado debe ser {total:d} euros"))
 def check_total(context, total):
@@ -54,3 +60,5 @@ def check_month_total(context, month_name, expected_total):
 def check_expenses_length(context, expenses):
     total = len(context["db"]._expenses)
     assert expenses == total
+
+
