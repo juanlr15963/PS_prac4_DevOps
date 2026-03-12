@@ -25,6 +25,8 @@ Feature: Gestión de gastos
     And añado un gasto de 10 euros llamado Comida
     Then el total de dinero gastado debe ser 15 euros
 
+  # Hechos por mi
+
   Scenario: Crear tres gastos diferentes que sumen 30 euros hace que el total sean 30 euros
     Given un gestor con un gasto de 15 euros
     When añado un gasto de 5 euros llamado cigarros
@@ -40,15 +42,7 @@ Feature: Gestión de gastos
     And elimino el gasto con id 3
     Then el total de dinero gastado debe ser 40 euros
 
-  Scenario: Crear tres gastos de 10, 30, 30 euros y elimino el ultimo gasto la suma son 40 euros
-    Given un gestor de gastos vacío
-    When añado un gasto de 10 euros llamado bar
-    And añado un gasto de 30 euros llamado Discoteca
-    And añado un gasto de 30 euros llamado taxi
-    And elimino el gasto con id 3
-    Then el total de dinero gastado debe ser 40 euros
-
   Scenario: Editar el precio de un gasto existente actualiza el total.
-    Given un gestor con un gasto del 40 euros llamado buffet con id 1
-    When edito el gasto de 40 euros para que ahora valga 50 euros
+    Given un gestor con un gasto de 40 euros llamado buffet con id 1
+    When edito el gasto con id 1 para que ahora sea 50 euros
     Then el total de dinero gastado debe ser 50 euros
