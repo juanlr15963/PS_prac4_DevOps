@@ -1,7 +1,11 @@
 from dataclasses import dataclass
 from datetime import date
 
-from core.domain_error import InvalidAmountError, EmptyTitleError, InvalidExpenseDateError
+from core.domain_error import (
+    InvalidAmountError,
+    EmptyTitleError,
+    InvalidExpenseDateError,
+)
 
 
 @dataclass

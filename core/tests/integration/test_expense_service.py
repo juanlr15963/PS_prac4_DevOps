@@ -98,12 +98,16 @@ def test_create_multiple_expenses_and_list():
 
     assert len(list_expenses) == 2, "Debería haber 2 gastos"
 
-    titles = [expense.title for expense in list_expenses] # obtenemos la lista de los títulos
+    titles = [
+        expense.title for expense in list_expenses
+    ]  # obtenemos la lista de los títulos
 
     assert "pan" in titles
     assert "leche" in titles
 
-    amounts = [expense.amount for expense in list_expenses] # Obteemos la lista de los montos
+    amounts = [
+        expense.amount for expense in list_expenses
+    ]  # Obteemos la lista de los montos
 
     assert service.total_amount() == sum(amounts)
 
@@ -128,9 +132,11 @@ def test_remove_expense_reduces_total():
     service.remove_expense(1)
     list_expense = [expense.title for expense in service.list_expenses()]
 
-    assert len(list_expense) == 1 # Nos aseguramos de que sólo haya quedado un gasto
+    assert len(list_expense) == 1  # Nos aseguramos de que sólo haya quedado un gasto
 
-    assert "revista" in list_expense # Aseguramos a que el monto remanente sea el de 'revista'
+    assert (
+        "revista" in list_expense
+    )  # Aseguramos a que el monto remanente sea el de 'revista'
 
 
 def test_update_expense_partial_fields():
@@ -149,13 +155,14 @@ def test_update_expense_partial_fields():
 
     service.create_expense("Camiseta", 15, "Ropa")
 
-    service.update_expense(1, None,18)
+    service.update_expense(1, None, 18)
 
     expense = service.list_expenses()[0]
 
     assert expense.title == "Camiseta"
     assert expense.amount == 18
     assert expense.description == "Ropa"
+
 
 def test_total_amount_after_removal():
     """
