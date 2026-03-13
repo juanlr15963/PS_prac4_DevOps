@@ -28,11 +28,17 @@ def manager_with_one_expense(context, amount):
 
 
 # ---------------------------------------------------------------------------------------------
-@given(parsers.parse("un gestor con un gasto de {amount:d} euros llamado {title} con id {expense_id:d}"))
+@given(
+    parsers.parse(
+        "un gestor con un gasto de {amount:d} euros llamado {title} con id {expense_id:d}"
+    )
+)
 def setup_especific_expense(context, amount, title, expense_id):
     context["service"].create_expense(
         title=title, amount=amount, description="", expense_date=date.today()
     )
+
+
 # ---------------------------------------------------------------------------------------------
 
 
